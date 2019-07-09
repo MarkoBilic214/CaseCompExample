@@ -20,7 +20,7 @@ export class CompoundingCompComponent implements OnInit {
 
   ngOnInit() {
     this.celebs = [{
-      name: 'kim Kardasian',
+      name: 'kim Kardashian',
       urlPic: 'https://amp.insider.com/images/5d0b91e29c5101118b066dc5-750-563.jpg',
       money: 350000000
     },
