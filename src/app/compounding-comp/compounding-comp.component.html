@@ -3,10 +3,10 @@
 </div>
 <div class="main-container">
   <div>
-    <h3 style="text-align: center">HOW MUCH WOULD THEY MAKE IF THEY SAVED THEN</h3>
+    <h2 style="text-align: center">Compounding celebrities</h2>
   </div>
   <div class="intro-text">
-      In this day and age People don't understand the power of compounding and how much just a couple years of investing your money, can make you a boat load of it. Click on a celebrity to see how much they can make if they invest their money now.
+      It's hard to see the power of compounding your cash without looking a bit into the future!  Click on a celebrity to see how much they could make through compounding if they started investing their net worth in 2019.
   </div>
   <div class="cards-container" *ngIf="SelectedCeleb==null">
     <div class="celeb-card" *ngFor="let celeb of celebs" (click)="setSelectedCeleb(celeb)">
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div *ngIf="risk!=null&&result!=null"class="results">
-      If {{SelectedCeleb.name}} invested their {{SelectedCeleb.money | currency}} for {{years}} years they would have made {{result | currency}}
+      If {{SelectedCeleb.name}} invested their {{SelectedCeleb.money | currency}} for {{years}} years they would make  {{result | currency}}
       <button class="back-button" (click)="clearSelections()">
           Back To celebrities
         </button>
