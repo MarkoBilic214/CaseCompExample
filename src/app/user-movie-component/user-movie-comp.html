@@ -1,0 +1,28 @@
+<div class='main-content'>
+  
+  <div class='main-header'>
+    Movie Recomender System 
+  </div>
+
+  <div class='user-form'>
+    <div class='user-header'>search for a movie and add it to your liked list</div>
+    <div *ngFor='let item of userLikedMovies'>
+      {{item.title}}
+    </div> 
+    <input type='text' name='movie-name' >
+  </div>
+
+  <div class='movie-table'>
+    <Table class='Table'>
+      <th>title</th>
+      <th>year</th>
+      <tr *ngFor='let itemSlice of pagedMovies'>
+        <td>{{itemSlice.title}}</td>
+        <td>{{itemSlice.year}}</td>
+      </tr>
+
+    </Table>
+  </div>
+
+
+  </div>

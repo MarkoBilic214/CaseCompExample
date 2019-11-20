@@ -30,7 +30,7 @@ export class CompoundingCompComponent implements OnInit {
       money: 150000000
     }];
 
-    this.options=[{
+    this.options = [{
       label: 'Safe',
       value: 4
     },
