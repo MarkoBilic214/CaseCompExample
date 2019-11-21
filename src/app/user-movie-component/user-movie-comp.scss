@@ -17,4 +17,19 @@
         }
     }
 
+    .table-container{
+        display: flex;
+        justify-content: center;
+        .movie-table{
+            th{
+                padding-right: 120px;
+            }
+
+            .pagination{
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+
 }

@@ -7,6 +7,7 @@ import { CompoundingCompComponent } from './compounding-comp/compounding-comp.co
 import { UserMovieComponent } from './user-movie-component/user-movie-comp'
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchByTitle } from './shared/search.pipe';
 
 
 
@@ -23,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [SearchByTitle],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

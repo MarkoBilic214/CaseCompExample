@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { parse } from 'papaparse';
 import { HttpClient } from '@angular/common/http';
+import { SearchByTitle } from '../shared/search.pipe';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 @Component({
   selector: 'app-user-movie-comp',
   templateUrl: './user-movie-comp.html',
@@ -14,7 +16,7 @@ export class UserMovieComponent implements OnInit {
   fields: Array<any>;
   page: number;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private searchPipe: SearchByTitle) {
   }
 
   ngOnInit() {
@@ -34,5 +36,26 @@ export class UserMovieComponent implements OnInit {
       }, error => {
         console.log(error);
       });
+  }
+
+  changetext( searchText: string ) {
+    let filtered;
+    filtered = this.searchPipe.transform(this.allmovies, searchText);
+    this.page = 0;
+    this.pagedMovies =  filtered.slice(this.page * 20, this.page * 20 + 20);
+  }
+
+  addToList(item: any) {
+    this.userLikedMovies.push(item);
+  }
+
+  changePage(action: string){
+    if (action == 'next'){
+      this.page++;
+    }
+    else{
+      this.page--; 
+    }
+    this.pagedMovies =  this.allmovies.slice(this.page * 20, this.page * 20 + 20);
   }
 }

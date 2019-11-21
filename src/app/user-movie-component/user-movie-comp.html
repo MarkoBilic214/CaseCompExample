@@ -1,28 +1,41 @@
 <div class='main-content'>
-  
+
   <div class='main-header'>
-    Movie Recomender System 
+    Movie Recomender System
   </div>
 
   <div class='user-form'>
     <div class='user-header'>search for a movie and add it to your liked list</div>
     <div *ngFor='let item of userLikedMovies'>
+      <div *ngIf='userLikedMovies.length != 0'>
+        Movies I like
+      </div>
       {{item.title}}
-    </div> 
-    <input type='text' name='movie-name' >
+    </div>
+    <input #inbox type='text' name='movie-name' (input)='changetext(inbox.value)'>
   </div>
 
-  <div class='movie-table'>
-    <Table class='Table'>
-      <th>title</th>
-      <th>year</th>
-      <tr *ngFor='let itemSlice of pagedMovies'>
-        <td>{{itemSlice.title}}</td>
-        <td>{{itemSlice.year}}</td>
-      </tr>
+  <div class='table-container'>
+    <div class='movie-table'>
+      <Table class='Table'>
+        <th>title</th>
+        <th>year</th>
+        <th>ratings</th>
+        <tr *ngFor='let itemSlice of pagedMovies'>
+          <td>{{itemSlice.title}}</td>
+          <td>{{itemSlice.year}}</td>
+          <td>{{itemSlice.imdbRating}}</td>
+          <td><input type="button" value='Select' (click)='addToList(itemSlice)'/></td>
+        </tr>
+      </Table>
+        <div class='pagination'>
+        <input *ngIf='page > 0' type='button' value='back' (click)='changePage("back")'/>
+        {{page}}
+        <input  type='button' value='next' (click)='changePage("next")'/>
+        </div>
 
-    </Table>
+    </div>
   </div>
 
 
-  </div>
+</div>
