@@ -6,15 +6,19 @@
 
   <div class='user-form'>
     <div class='user-header'>search for a movie and add it to your liked list</div>
-    <div *ngFor='let item of userLikedMovies'>
-      <div *ngIf='userLikedMovies.length != 0'>
+    <div *ngIf='userLikedMovies.length != 0'>
         Movies I like
       </div>
+    <div *ngFor='let item of userLikedMovies'>
       {{item.title}}
     </div>
-    <input #inbox type='text' name='movie-name' (input)='changetext(inbox.value)'>
   </div>
-
+  <div class='movie-input'>
+    <div>
+        Search for a movie
+    </div>
+      <input #inbox type='text' name='movie-name' (input)='changetext(inbox.value)'>
+  </div>
   <div class='table-container'>
     <div class='movie-table'>
       <Table class='Table'>
@@ -25,7 +29,11 @@
           <td>{{itemSlice.title}}</td>
           <td>{{itemSlice.year}}</td>
           <td>{{itemSlice.imdbRating}}</td>
-          <td><input type="button" value='Select' (click)='addToList(itemSlice)'/></td>
+          <td>
+            <select (change)="onChange($event,itemSlice)">
+             <option *ngFor="let option of options" [value]="option.value">{{option.label}}</option>
+            </select>
+          </td>
         </tr>
       </Table>
         <div class='pagination'>
@@ -35,6 +43,10 @@
         </div>
 
     </div>
+  </div>
+
+  <div class='recommend-movies'>
+
   </div>
 
 
