@@ -110,7 +110,7 @@ export class UserMovieComponent implements OnInit {
     let filtered;
     filtered = this.searchPipe.transform(this.allmovies, searchText);
     this.page = 0;
-    this.pagedMovies = filtered.slice(this.page * 20, this.page * 20 + 20);
+    this.pagedMovies = filtered.slice(this.page * 10, this.page * 10 + 10);
   }
 
   addToList(item: any) {
