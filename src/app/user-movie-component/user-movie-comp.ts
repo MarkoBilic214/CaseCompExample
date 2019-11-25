@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { parse } from 'papaparse';
 import { HttpClient } from '@angular/common/http';
 import { SearchByTitle } from '../shared/search.pipe';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 @Component({
   selector: 'app-user-movie-comp',
   templateUrl: './user-movie-comp.html',
@@ -118,8 +117,11 @@ export class UserMovieComponent implements OnInit {
   }
 
   onChange(event: any, itemslice: any) {
-    console.log(event.target.value);
-    this.addToList(itemslice);
+    const item = {
+      title: itemslice.title,
+      rating: event.target.value
+    };
+    this.addToList(item);
 
   }
 
