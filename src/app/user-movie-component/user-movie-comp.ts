@@ -9,34 +9,34 @@ import { SearchByTitle } from '../shared/search.pipe';
 })
 export class UserMovieComponent implements OnInit {
 
-  userLikedMovies: Array<any>;
+  userLikedMovies: Array<string>;
+  userRatedMovies: MovieMap;
   allmovies: Array<any>;
   pagedMovies: Array<any>;
   fields: Array<any>;
   page: number;
   generes: Array<any>;
-  users: Array<any>;
+  users: Array<MovieMap>;
   options: Array<any>;
+  userSimilarity: Array<number>;
+  candidateMovies: MovieMap;
 
   constructor(private http: HttpClient, private searchPipe: SearchByTitle) {
     this.users = [];
-    let randuser = {
-      titles: [
-        {
-          title: 'Der Vagabund und das Kind (1921)',
-          rating: 5.7
-        },
-        {
-          title: 'Die Spur des Falken (1941)',
-          rating: 9.2
-        }
-      ]
-    };
-    this.users.push(randuser);
+
+    let user2 = {};
+    user2['Spy Kids (2001)'] = 5;
+    user2['James Bond 007 - GoldenEye (1995)'] = 4;
+    user2['James Bond 007 - Goldfinger (1964)'] = 4;
+    user2['The King\'s Speech (2010)'] = 1;
+    user2['Kung Fu Panda (2008)'] = 2;
+
+    this.users.push(user2);
   }
 
   ngOnInit() {
     this.userLikedMovies = [];
+    this.userRatedMovies = {};
     this.page = 0;
     this.generes = [];
     this.http.get('assets/imdbmovies/imdb.csv', { responseType: 'text' })
@@ -99,6 +99,7 @@ export class UserMovieComponent implements OnInit {
 
   addToList(item: any) {
     this.userLikedMovies.push(item);
+    this.userRatedMovies[item.title] = item.rating;
   }
 
   onChange(event: any, itemslice: any) {
@@ -107,7 +108,7 @@ export class UserMovieComponent implements OnInit {
       rating: event.target.value
     };
     this.addToList(item);
-
+    this.recommend();
   }
 
   changePage(action: string) {
@@ -119,4 +120,75 @@ export class UserMovieComponent implements OnInit {
     }
     this.pagedMovies = this.allmovies.slice(this.page * 20, this.page * 20 + 20);
   }
+
+  recommend() {
+    this.candidateMovies = {};
+    this.userSimilarity = [];
+    for (var i=0; i<this.users.length; i++) {
+      this.userSimilarity.push(this.calculateSimilarity(this.userRatedMovies, this.users[i]));
+      console.log(this.userSimilarity[i]);
+      if (this.userSimilarity[i] > 0.5) {
+        for (let movie in this.users[i]) {
+          if (!(movie in this.userRatedMovies) && !(movie in this.candidateMovies)) {
+            this.candidateMovies[movie] = 5;
+          }
+        }
+      }
+    }
+
+    let recommendations = [];
+
+    for (let movie in this.candidateMovies) {
+      let movieSum = 0;
+      let count = 0;
+      for (let i=0; i<this.users.length; i++) {
+        if (movie in this.users[i]) {
+          movieSum = movieSum + (this.users[i][movie]*this.userSimilarity[i]);
+          count = count + this.userSimilarity[i];
+        }
+      }
+      recommendations.push({
+        title: movie,
+        rating: movieSum/count 
+      })
+    }
+
+    recommendations.sort((movie1, movie2) => (movie1.rating > movie2.raint) ? -1 : 1);
+    console.log(recommendations);
+  }
+
+  calculateSimilarity(user: MovieMap, guest: MovieMap) {
+    let userList = [];
+    let userSum = 0;
+    let guestList = [];
+    let guestSum = 0;
+
+    //create list of matching rated movies
+    for (let key in user) {
+      if (key in guest) {
+        userList.push(user[key]);
+        userSum = userSum + userList.push(user[key]);
+        guestList.push(guest[key]);
+        userSum = guestSum + guestList.push(user[key]);
+      }
+    }
+
+    let userAvg = userSum/userList.length;
+    let guestAvg = guestSum/guestList.length;
+
+    let crossSum = 0;
+    let sqSum1 = 0;
+    let sqSum2 = 0;
+
+    for (var k=0; k<userList.length; k++) {
+      crossSum = crossSum + (userList[k]-userAvg)*(guestList[k]-guestAvg);
+      sqSum1 = sqSum1 + Math.pow(userList[k]-userAvg, 2);
+      sqSum2 = sqSum2 + Math.pow(guestList[k]-guestAvg, 2);
+    }
+    return crossSum / Math.pow(sqSum1*sqSum2, 0.5);
+  }
+}
+
+export interface MovieMap {
+  [key: string] : number;
 }
