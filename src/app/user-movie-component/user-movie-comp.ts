@@ -164,7 +164,7 @@ export class UserMovieComponent implements OnInit {
         break;
       }
       if (recommendations[i].rating>2) {
-        this.recommendedMovies.push(recommendations[i].title);
+        this.recommendedMovies.push(recommendations[i]);
       }
       console.log(recommendations[i].title + " estimated rating: " + recommendations[i].rating);
     }
