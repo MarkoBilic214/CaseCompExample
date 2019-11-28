@@ -1,0 +1,152 @@
+{
+    "userList": [
+    {
+        "ratedMovies" : [
+            {
+                "title" : "Spy Kids (2001)",
+                "rating": 5
+            },
+            {
+                "title" : "James Bond 007 - GoldenEye (1995)",
+                "rating": 4
+            },
+            {
+                "title" : "James Bond 007 - Goldfinger (1964)",
+                "rating": 4
+            },
+            {
+                "title" : "The King's Speech (2010)",
+                "rating": 1
+            },
+            {
+                "title" : "Kung Fu Panda (2008)",
+                "rating": 2
+            }
+        ]
+    },
+    {
+        "ratedMovies" : [
+            {
+                "title" : "Mulan (1998)",
+                "rating": 5
+            },
+            {
+                "title" : "101 Dalmatians: Escape from DeVil Manor (Video Game 1999)",
+                "rating": 4
+            },
+            {
+                "title" : "Pinocchio (1940)",
+                "rating": 5
+            },
+            {
+                "title" : "Fantasia (1940)",
+                "rating": 5
+            },
+            {
+                "title" : "Harold & Kumar Go to White Castle (2004)",
+                "rating": 0
+            },
+            {
+                "title" : "300 (2006)",
+                "rating": 1
+            },
+            {
+                "title" : "Star Wars: The Clone Wars (2008)",
+                "rating": 2
+            }
+        ]
+    },
+    {
+        "ratedMovies" : [
+            {
+                "title" : "Die Hard (Video Game 1992)",
+                "rating": 4
+            },
+            {
+                "title" : "Indiana Jones und der letzte Kreuzzug (1989)",
+                "rating": 5
+            },
+            {
+                "title" : "The Lord of the Rings: The Battle for Middle-Earth (Video Game 2004)",
+                "rating": 4
+            },
+            {
+                "title" : "Terminator (1984)",
+                "rating": 4
+            },
+            {
+                "title" : "Snow White and the Huntsman (2012)",
+                "rating": 2
+            },
+            {
+                "title" : "Disney's Animation Magic: Beauty and the Beast (Video 2002)",
+                "rating": 1
+            }
+        ]
+    },
+    {
+        "ratedMovies" : [
+            {
+                "title" : "Mr. Bean (TV Series 1990–1995)",
+                "rating": 4
+            },
+            {
+                "title" : "Zoolander (2001)",
+                "rating": 5
+            },
+            {
+                "title" : "Harold & Kumar Go to White Castle (2004)",
+                "rating": 5
+            },
+            {
+                "title" : "Team America (2004)",
+                "rating": 4
+            },
+            {
+                "title" : "Fantasia (1940)",
+                "rating": 2
+            },
+            {
+                "title" : "Terminator (1984)",
+                "rating": 1
+            }
+        ]
+    },
+    {
+        "ratedMovies" : [
+            {
+                "title" : "The Wolf of Wall Street (2013)",
+                "rating": 5
+            },
+            {
+                "title" : "Pulp Fiction (1994)",
+                "rating": 5
+            },
+            {
+                "title" : "Inception (2010)",
+                "rating": 4
+            },
+            {
+                "title" : "Django Unchained (2012)",
+                "rating": 4
+            },
+            {
+                "title" : "Kill Bill: Vol. 1 (2003)",
+                "rating": 5
+            },
+            {
+                "title" : "Cars (2006)",
+                "rating": 1
+            },
+            {
+                "title" : "James Bond 007 - GoldenEye (1995)",
+                "rating": 2
+            },
+            {
+                "title" : "Fantasia (1940)",
+                "rating": 1
+            }
+        ]
+    }
+    ]
+}

@@ -1,0 +1,21 @@
+Details of recommendation system.
+
+Users:
+There are hard-coded users in 'src/assets/users/usersList.json' that each have rated movies. Users' rated movies are somewhat created with a 
+pattern based on genre. (a users likes a certain genre of movies, rating the ones that fall in the genre highly and others lowly)
+
+
+Recommendation calculations:
+Users similarities are calculated using the pearson correlation, and the estimated rating for a user that hasn't rated a movie is calculated
+using the weighted sum method.
+
+Because the database of movies is so large and the hard coded users only have so many rated movies, there are many movies that do not suggest
+other movies when rated.
+
+
+Process when a movie is rated:
+When a movie is rated the system iterates through each user. It calculates the similarity between the guest and the user. If the similarity
+is above 0.5 then it will add all the movies that the guest hasn't rated to a candidate movies list. After all the similarities have been 
+calculated, the system iterates through the list of candidate movies (unique item list), and calculates the estimated score for the guest.
+If the estimated score is above a 2, then it is added to the recommendation list which is then displayed. This entire process is done each 
+time the guest rates a movie.
